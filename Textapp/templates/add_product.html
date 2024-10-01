@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-sm-12 col-xl-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Enter the category details</h6>
+                            <form method="post" action="{% url 'add_pro' %}" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                            <select class="form-select mb-3" aria-label="Default select example" name="cname">
+                                <option selected="">Select Category</option>
+                                {% for d in category %}
+                                <option>{{ d.Name }}</option>
+                                {% endfor %}
+                            </select>
+                                <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Enter the name" name="product_name">
+                                <label for="floatingInput">Product Name</label>
+                            </div>
+                                <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a Description here"  style="height: 150px;" name="description"></textarea>
+                                <label >Description</label>
+                            </div>
+                                <div class="form-floating mb-3">
+                                <input type="tel" class="form-control"  placeholder="Enter the price" name="price">
+                                <label for="floatingInput">Product Price</label>
+                                 <div class="form-floating mb-3">
+                                <input type="text" class="form-control"  placeholder="Enter the name" name="brand">
+                                <label for="floatingInput">Brand</label>
+                            </div>
+                                <div class="mb-3">
+                                <label  class="form-label" >Upload Image</label>
+                                <input class="form-control bg-dark" type="file"  name="pro_img1">
+                                <input class="form-control bg-dark" type="file"  name="pro_img2">
+                                <input class="form-control bg-dark" type="file"  name="pro_img3">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Cancel</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+
+        {% if i.tags == "warning" %}
+            <script>
+                swal('{{i}}', '', 'warning');
+            </script>
+        {% elif i.tags == "error" %}
+            <script>
+                swal('{{i}}', '', 'error');
+            </script>
+        {% elif i.tags == "info" %}
+            <script>
+                swal('{{i}}', '', 'info');
+            </script>
+        {% else %}
+            <script>
+                swal('{{i}}', '', 'success');
+            </script>
+        {% endif %}
+
+    {% endfor %}
+{% endif %}
+</body>
+</html>
+{% endblock %}

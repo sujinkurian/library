@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-sm-12 col-xl-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">View Product</h6>
+                            <table class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Category Name</th>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">Brand</th>
+                                        <th scope="col">Product of Price</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Uploaded Images</th>
+                                        <th scope="col">Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for d in data %}
+                                    <tr>
+                                        <th scope="row">{{d.Category_name}}</th>
+                                        <th scope="row">{{d.Product_name}}</th>
+                                        <th scope="row">{{d.Brand}}</th>
+                                        <th scope="row">{{d.Price}}</th>
+                                        <th scope="row">{{d.Description}}</th>
+                                        <td>
+                                            <img src="{{d.Profile_img1.url}}" height="100px" width="100px">
+                                            <img src="{{d.Profile_img2.url}}" height="100px" width="100px">
+                                            <img src="{{d.Profile_img3.url}}" height="100px" width="100px">
+                                        </td>
+                                        <td>
+                                  <a href="{% url 'edit_pro' pro_id=d.id %}">
+                                      <button class="btn btn-outline-primary">Edit</button>
+                                  </a>
+                                            <a href="">
+                                      <button class="btn btn-outline-primary">Delete</button>
+                                  </a>
+                              </td>
+                                    </tr>
+                                </tbody>
+                                  {% endfor %}
+                            </table>
+                                </form>
+                        </div>
+                    </div>
+</body>
+</html>
+{% endblock %}
