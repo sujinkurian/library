@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{%extends 'lib.html' %}
+{%block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">BookDetails</h4>
+                    <p class="card-description"> Enter the Book details </p>
+                    <form class="forms-sample" method="post" action="{% url 'update_book'book_id=data.id %}">
+                        {% csrf_token%}
+                      <div class="form-group">
+                        <label for="exampleInputName1">Bookname</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Bookname" name="BookName">
+                      </div>
+                      <div class="form-group">
+                        <label >Authorname</label>
+                        <input type="text" class="form-control"  placeholder="Authorname" name="Authorname">
+                      </div>
+                       <div class="form-group">
+                        <label >Price</label>
+                        <input type="tel" class="form-control" placeholder="price" name="Price">
+                      </div>
+                      <div class="form-group">
+                        <label >Publish_date</label>
+                        <input type="date" class="form-control" id="exampleInputEmail3" placeholder="Publishdate" name="Publishdate">
+                      </div>
+                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}
